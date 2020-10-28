@@ -6,7 +6,12 @@ from Lab3.src.Tokanizer import Tokenizer
 
 if __name__ == '__main__':
 
-    with open("Lab3/input/p{}.in".format(2), "r") as f:
+    program_nr = 1
+
+    with open('Lab3/output/err.out', 'w') as f:
+        pass
+
+    with open("Lab3/input/p{}.in".format(program_nr), "r") as f:
         program = f.read()
 
     tk = Tokenizer()
@@ -23,6 +28,7 @@ if __name__ == '__main__':
 
     integers = re.compile(r"0|[1-9][0-9]*|[+-][1-9][0-9]*")
     strings = re.compile(r'^".*"$')
+    alphabet = re.compile(r'(\w|\+|-|=|<|>|!|/|\*|%|\\|\s|;|:|\[|\]|\(|\)|\{|\})+')
     variables = re.compile(r'[A-Z]|[a-z]\w*')
 
     for token in tokens:
@@ -35,7 +41,14 @@ if __name__ == '__main__':
             st.append(token)
             pif.append(PIFEntry("id", st.search(token)))
         else:
-            print("ERROR!")
+            error_type = "Lexical Error"
+            error_message = ""
+            if not alphabet.fullmatch(token):
+                error_message = "Unknown symbol"
+            else:
+                error_message = "Variable or constant declaration rules not respected"
+            with open('Lab3/output/err.out', 'a') as f:
+                print("{}: {} in {}".format(error_type, error_message, token), file=f)
 
     with open('Lab3/output/st.out', 'w') as f:
         print(st, file=f)
