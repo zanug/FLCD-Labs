@@ -1,0 +1,197 @@
+Alphabet:
+
+	a. Upper (A-Z) and lower case letters (a-z) of the English alphabet
+
+    b. Underline character '_';
+
+    c. Decimal digits (0-9);
+	
+	d. All Special symbols
+
+Lexic:
+
+    a. Special symbols, representing:
+
+		- operators + - * / % = < <= != == >= > \
+
+		- separators ( ) [ ] { } : ; space enter tab
+
+		- reserved words:
+
+			int char const if else while START END input print sqrt
+
+    b. identifiers
+
+		-a sequence of letters, digits and underlines such that the first character is a letter; the rule is:
+
+		identifier = letter{letter | digit | "_"}
+
+		letter = "a" | "b" |...| "z" | "A" | "B" |...| "Z"
+
+		digit = "0" | "1" |...| "9"
+
+    c. constants
+
+		1. integer - rule:
+
+			nrconst = "+"nr | "-"nr | nr
+			
+			nzdigit = "1" |...| "9"
+
+			nr = "0" | ["+" | "-"]nzdigit{digit}
+		
+		2. character - rule:
+
+			character = "'"letter"'" | "'"digit"'" | "'"specialsymbol"'"
+			
+			special_symbol = "_" | "*" ... 
+
+		3. string
+
+			string = "\""{character}"\""
+
+2. Syntax:
+
+	The words - predefined tokens are specified between " and ":
+
+	Sintactical rules:
+
+		program ::= "START" {decllist | stmtlist} "END"
+
+		decllist ::= declaration | declaration decllist
+
+		declaration ::= type IDENTIFIER
+
+		type1 ::= "char" | "int"
+
+		arraydecl ::= type1 "[" nr "]"
+
+		type  ::= type1 | arraydecl
+
+		stmtlist ::= stmt | stmt stmtlist
+
+		stmt ::= simplstmt | structstmt
+
+		simplstmt ::= assignstmt | iostmt
+
+		assignstmt ::= IDENTIFIER "=" expression
+
+		expression ::= expression "+" | "-" | "*" | "/" | "%" term | term
+
+		term ::= expression | factor
+
+		factor ::= "(" expression ")" | IDENTIFIER | CONST | sqrt
+		
+		sqrt ::= "sqrt" "(" IDENTIFIER | expression | CONST ")"
+
+		iostmt ::= IDENTIFIER "=" "input()" | "print" "(" IDENTIFIER | expression | CONST ")"
+
+		structstmt ::= ifstmt | whilestmt
+
+		ifstmt ::= "if" "(" condition ")" "{" stmtlist "}" | "if" "(" condition ")" "{" stmtlist "}" "else" "{" stmtlist "}" 
+
+		whilestmt ::= "while" "(" condition ")" "{" stmtlist "}"
+
+		condition ::= expression RELATION expression
+
+		RELATION ::= "<" | "<=" | "==" | ">=" | ">"
+		
+		
+The Programs Written in the language:
+1. Compute gcd of 2 numbers
+
+START
+
+int a
+int b
+int m
+
+a = input()
+b = input()
+
+while( b != 0 )
+{
+	m = a % b
+	a = b
+	b = m
+}
+
+print(a)
+END
+
+1_err. Compute gcd of 2 numbers
+
+START
+
+int 0a
+int b
+int m
+
+a = input()
+b = input()
+
+while( b != 0 )
+{
+	m = a $ b
+	a = b
+	b = m
+}
+
+print(a)
+END
+
+2. Verify a number is prime
+
+START
+
+int a
+int i
+int s
+
+a = input()
+i = 0
+s = sqrt(a)
+
+while( i <= s )
+{
+	if( a % i == 0 )
+	{
+		print( "prime" )
+		END
+	}
+}
+
+print( "not prime" )
+END
+
+3. Compute the max of n numbers
+
+START
+
+int n
+int[50] x
+int i
+int max
+
+n = input()
+
+i = 0
+while( i < n )
+{
+	x[i] = input()
+	i = i + 1
+}
+
+i = 1
+max = x[0]
+while( i < n )
+{
+	if( x[i] > max )
+	{
+		max = x[i]
+	}
+	i = i + 1
+}
+
+print(max)
+END

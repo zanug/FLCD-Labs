@@ -1,0 +1,98 @@
+1. Compute gcd of 2 numbers
+
+START
+
+int a
+int b
+int m
+
+a = input()
+b = input()
+
+while( b != 0 )
+{
+	m = a % b
+	a = b
+	b = m
+}
+
+print(a)
+END
+
+1_err. Compute gcd of 2 numbers
+
+START
+
+int 0a
+int b
+int m
+
+a = input()
+b = input()
+
+while( b != 0 )
+{
+	m = a $ b
+	a = b
+	b = m
+}
+
+print(a)
+END
+
+
+2. Verify a number is prime
+
+START
+
+int a
+int i
+int s
+
+a = input()
+i = 0
+s = sqrt(a)
+
+while( i <= s )
+{
+	if( a % i == 0 )
+	{
+		print( "prime" )
+		END
+	}
+}
+
+print( "not prime" )
+END
+
+3. Compute the max of n numbers
+
+START
+
+int n
+int[50] x
+int i
+int max
+
+n = input()
+
+i = 0
+while( i < n )
+{
+	x[i] = input()
+	i = i + 1
+}
+
+i = 1
+max = x[0]
+while( i < n )
+{
+	if( x[i] > max )
+	{
+		max = x[i]
+	}
+	i = i + 1
+}
+
+print(max)
+END

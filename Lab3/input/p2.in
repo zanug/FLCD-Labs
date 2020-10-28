@@ -1,0 +1,21 @@
+START
+
+int a
+int i
+int s
+
+a = input()
+i = 0
+s = sqrt(a)
+
+while( i <= s )
+{
+	if( a % i == 0 )
+	{
+		print( "prime" )
+		END
+	}
+}
+
+print( "not prime" )
+END
