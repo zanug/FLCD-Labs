@@ -6,9 +6,9 @@ from Lab3.src.Tokanizer import Tokenizer
 
 if __name__ == '__main__':
 
-    program_nr = 1
+    program_nr = 4
 
-    with open('Lab3/output/err.out', 'w') as f:
+    with open('Lab3/output/err.out', 'w'):
         pass
 
     with open("Lab3/input/p{}.in".format(program_nr), "r") as f:

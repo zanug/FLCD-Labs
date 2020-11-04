@@ -1,8 +1,8 @@
 START
 
-int 0a
-int b
-int m
+int 0a = "adf
+int b = 01
+int m = 4-1
 
 a = input()
 b = input()
