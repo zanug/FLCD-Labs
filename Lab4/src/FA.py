@@ -45,14 +45,13 @@ class FA:
             c_node = c_step[0]
             c_pos_sequence = c_step[1]
 
+            if c_pos_sequence >= len(sequence):
+                if c_node in self.get_final_states():
+                    return True
 
-            if (c_node, sequence[c_pos_sequence]) in self.trans.keys():
-                if c_pos_sequence + 1 >= len(sequence):
-                    if c_node in self.get_final_states():
-                        return True
-                else:
-                    for node in self.trans[(c_node, sequence[c_pos_sequence])]:
-                        queue.put((node, c_pos_sequence + 1))
+            elif (c_node, sequence[c_pos_sequence]) in self.trans.keys():
+                for node in self.trans[(c_node, sequence[c_pos_sequence])]:
+                    queue.put((node, c_pos_sequence + 1))
 
         return False
 
