@@ -35,6 +35,11 @@ class FA:
         queue = Queue()
         queue.put((self.states[0].name, 0))
 
+        if len(sequence) == 0:
+            if self.states[0].final:
+                return True
+            return False
+
         while not queue.empty():
             c_step = queue.get()
             c_node = c_step[0]
@@ -42,10 +47,12 @@ class FA:
 
 
             if (c_node, sequence[c_pos_sequence]) in self.trans.keys():
-                if c_pos_sequence + 1 == len(sequence):
-                    return True
-                for node in self.trans[(c_node, sequence[c_pos_sequence])]:
-                    queue.put((node, c_pos_sequence + 1))
+                if c_pos_sequence + 1 >= len(sequence):
+                    if c_node in self.get_final_states():
+                        return True
+                else:
+                    for node in self.trans[(c_node, sequence[c_pos_sequence])]:
+                        queue.put((node, c_pos_sequence + 1))
 
         return False
 
