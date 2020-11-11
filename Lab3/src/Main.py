@@ -1,5 +1,6 @@
 import re
 
+from Lab3.src.FA import FA
 from Lab3.src.PIF import PIFEntry, PIF
 from Lab3.src.SortedTable import SortedTable
 from Lab3.src.Tokanizer import Tokenizer
@@ -26,18 +27,21 @@ if __name__ == '__main__':
     with open("Lab3/input/keywords.in", "r") as f:
         keywords = f.read().split()
 
-    integers = re.compile(r"0|[1-9][0-9]*|[+-][1-9][0-9]*")
     strings = re.compile(r'^".*"$')
     alphabet = re.compile(r'(\w|\+|-|=|<|>|!|/|\*|%|\\|\s|;|:|\[|\]|\(|\)|\{|\})+')
-    variables = re.compile(r'[A-Z]|[a-z]\w*')
+
+    # integers = re.compile(r"0|[1-9][0-9]*|[+-][1-9][0-9]*")
+    fa_integers = FA("Lab3/input/IntegerFA.in")
+    # variables = re.compile(r'[A-Z]|[a-z]\w*')
+    fa_variables = FA("Lab3/input/IdentifierFA.in")
 
     for token in tokens:
         if token in keywords:
             pif.append(PIFEntry(token, -1))
-        elif integers.fullmatch(token) or strings.fullmatch(token):  # if token is constant
+        elif fa_integers.check_sequence(token) or strings.fullmatch(token):  # if token is constant
             st.append(token)
             pif.append(PIFEntry("const", st.search(token)))
-        elif variables.fullmatch(token):  # if token is variable
+        elif fa_variables.check_sequence(token):  # if token is variable
             st.append(token)
             pif.append(PIFEntry("id", st.search(token)))
         else:
