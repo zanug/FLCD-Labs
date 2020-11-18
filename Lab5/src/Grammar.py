@@ -31,3 +31,4 @@ class Grammar:
 
     def get_productions_for(self, non_terminal):
         return self.productions[non_terminal]
+
