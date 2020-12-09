@@ -1,4 +1,5 @@
 from Lab5.src.Grammar import Grammar
+from Lab5.src.LR0 import LR0
 
 
 def menu():
@@ -25,6 +26,9 @@ def menu():
 
 
 if __name__ == '__main__':
-    grammar = Grammar("../input/Grammar.txt")
+    grammar = Grammar("../input/Grammar2.txt")
+    lr0 = LR0(grammar)
+    print(lr0.create_parsing_table())
+    print(lr0.parse("a b b c"))
 
     menu()
